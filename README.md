@@ -20,7 +20,7 @@ In this project, I created and deployed a professional personal portfolio websit
 
 Additionally, the website includes a digital and analog clock, a visit-tracking banner using cookies, and a flag counter. This assignment helped me reinforce both front-end development and web security practices.
 
-- **Deployed Website:** [https://guntakaa2.github.io/](https://guntakaa2.github.io/
+- **Deployed Website:** [https://guntakaa2.github.io/](https://guntakaa2.github.io/)
 - **GitHub Repository:** [https://github.com/guntakaa2/guntakaa2.github.io](https://github.com/guntakaa2/guntakaa2.github.io)
 
 ---
