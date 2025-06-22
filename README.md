@@ -62,13 +62,13 @@ Additionally, the website includes a digital and analog clock, a visit-tracking 
 
 ## Screenshot:
 
-![index page](images/ss1.jpg)  
+![index page](images/ss1.png)  
 **index page with portfolio**
 
-![API calls](images/ss2.jpg)  
+![API calls](images/ss2.png)  
 **API integration**
 
-![WAPH Course](images/ss3.jpg)
+![WAPH Course](images/ss3.png)
 **WAPH course page**
 
 ## Conclusion
