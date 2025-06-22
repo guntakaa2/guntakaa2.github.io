@@ -233,6 +233,10 @@ for (let i = 1; i <= 12; i++) {
       <div class="card-header">Daily XKCD Comic</div>
       <div class="card-body" id="nasaAPI">Loading comic...</div>
     </div>
+    <div class="card mb-3 bg-weather">
+      <div class="card-header">Current Weather and Location</div>
+      <div class="card-body" id="weatherData">Fetching weather data...</div>
+    </div>
     <div class="bottom-widgets">
       <a href="waph.html" class="btn btn-secondary">Go to WAPH Page</a>
       <br><br>
@@ -303,6 +307,42 @@ fetch("https://xkcd.now.sh/?comic=latest")
       link.textContent = "(Show Email)";
     }
   }
+  // Weather using open-meteo.com and Nominatim for location name
+function loadWeather() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(pos => {
+      const lat = pos.coords.latitude;
+      const lon = pos.coords.longitude;
+
+      // First get city/town name
+      fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`)
+        .then(res => res.json())
+        .then(location => {
+          const city = location.address.city || location.address.town || location.address.village || "your area";
+
+          // Then get weather
+          fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`)
+            .then(res => res.json())
+            .then(data => {
+              const w = data.current_weather;
+              const description = w.weathercode === 0 ? "Clear" : "Cloudy";
+              document.getElementById("weatherData").innerHTML = `
+                <strong>Location:</strong> ${city}<br>
+                <strong>Temperature:</strong> ${w.temperature}°C<br>
+                <strong>Wind Speed:</strong> ${w.windspeed} km/h<br>
+                <strong>Condition:</strong> ${description}
+              `;
+            });
+        });
+    }, () => {
+      document.getElementById("weatherData").textContent = "Location permission denied.";
+    });
+  } else {
+    document.getElementById("weatherData").textContent = "Geolocation not supported.";
+  }
+}
+loadWeather();
+
 </script>
 
 </body>
